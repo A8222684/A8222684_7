@@ -3,74 +3,79 @@
 #include <vector>
 using namespace std;
 
-/*¦b¦æ«áª`°O¼Ğ¤W  "//*"  ªº³¡¤À¬°ºû«ùµ{¦¡¥Î¡A»P§Ú­t³d³¡¤ÀµLÃö*/
-/*ª±®a¤H¼Æ¡GSize  ;  ª±®a¦W³æ¡Gvector<string>N  ;  Pass¡G±°¹L³o§½  ;  Out¡G¯}²£  ;  darkCard(ª±®a½s¸¹)¡Gª±®a·tµP*/
+/*åœ¨è¡Œå¾Œæ³¨è¨˜æ¨™ä¸Š  "//*"  çš„éƒ¨åˆ†ç‚ºç¶­æŒç¨‹å¼ç”¨ï¼Œèˆ‡æˆ‘è² è²¬éƒ¨åˆ†ç„¡é—œ*/
+/*ç©å®¶äººæ•¸ï¼šSize  ;  ç©å®¶åå–®ï¼švector<string>N  ;  Passï¼šæ éé€™å±€  ;  Outï¼šç ´ç”¢  ;  darkCard(ç©å®¶ç·¨è™Ÿ)ï¼šç©å®¶æš—ç‰Œ*/
 
 int Size = 4;	//*
-int Ones = 100;	//¥Ø«e½äª`
+int Ones = 100;	//ç›®å‰è³­æ³¨
 
-int Allo = 0;	//¥Ø«e½äª`¥[Á`
-bool Pass = 0;	//false Ä~Äò¡Ature ¬°©ñ±ó	//*
-bool Out = 0;	//false Ä~Äò¡Ature ¬°¯}²£	//*
+int Allo = 0;	//ç›®å‰è³­æ³¨åŠ ç¸½
+bool Pass = 0;	//false ç¹¼çºŒï¼Œture ç‚ºæ”¾æ£„	//*
+bool Out = 0;	//false ç¹¼çºŒï¼Œture ç‚ºç ´ç”¢	//*
 vector<string> N;	//Name List	//*
-vector<int> H;	//Have List (¦U¤H¾Ö¦³Äw½X)
+vector<int> H;	//Have List (å„äººæ“æœ‰ç±Œç¢¼)
 
-//player:ª±®a½s¸¹
+//player:ç©å®¶ç·¨è™Ÿ
 string darkCard(int player) { cout << player << "'s DarkCard"; }	//*
 
-//¤Uª`(²Ä¤@¤H)
+//ä¸‹æ³¨(ç¬¬ä¸€äºº)
 void act0(int player, vector<string> N, bool Pass, bool Out) {
-	int x = 0;
-	int seen, one, z, oth = 0;
+	int x = 0;  //å‹•ä½œé¸é …è¼¸å…¥
+	int seen, one, z, oth = 0;  //è¨ˆæ•¸ç”¨è®Šæ•¸
 
-	do {
-		if (Out == true) {
-			cout << "ª±®a\"" << N[player] << "\"¤w¯}²£¥X§½\n\tPass" << endl;
+	do {	//è‹¥é¸æ“‡çœ‹æŒ‰ç‰Œï¼Œçœ‹å®Œå¾Œé‡æ–°é¸æ“‡
+		if (Out == true) {  	//æ˜¯å¦å·²ç ´ç”¢
+			cout << "ç©å®¶\"" << N[player] << "\"å·²ç ´ç”¢å‡ºå±€\n\tPass" << endl;
 		}else {
-			if (Pass == true) {
-				cout << "ª±®a\"" << N[player] << "\"¤w¦b¦¹§½±óÅv\n\tPass" << endl;
-			}else {
-				cout << "Its \"" << N[player] << "\"'s turn!" << endl << endl << "¬O§_¤Uª`¡H\n1.¤Uª`\n2.¬d¬İ·tµP\n3.±óÅv" << endl;
-				do{
+			if (Pass == true) {     //æ˜¯å¦å·²æ£„æ¬Š
+				cout << "ç©å®¶\"" << N[player] << "\"å·²åœ¨æ­¤å±€æ£„æ¬Š\n\tPass" << endl;
+			}else {     //åŸ·è¡Œå‹•ä½œæå•
+				cout << "Its \"" << N[player] << "\"'s turn!" << endl << endl << "æ˜¯å¦ä¸‹æ³¨ï¼Ÿ\n1.ä¸‹æ³¨\n2.æŸ¥çœ‹æš—ç‰Œ\n3.æ£„æ¬Š" << endl;
+				do{ //è‹¥é¸æ“‡è¼¸å…¥éŒ¯èª¤ï¼Œé‡æ–°é¸æ“‡
 					cin >> x;
 					cout << endl;
 
-					switch (x) {
-					case 1:	//¤Uª`
-						cout << "½Ğ¿é¤J¤Uª`Äw½X(³Ì¤Ö100)¡G";
-						do {	//R while Ones worn
+					switch (x) {        //å‹•ä½œé¸é …
+					case 1:	//1.ä¸‹æ³¨
+						cout << "è«‹è¼¸å…¥ä¸‹æ³¨ç±Œç¢¼(æœ€å°‘100)ï¼š";
+						do {	//é‡ä¾† while Ones worn
 							cin >> one;
-							if (one > 100 && one <= H[player]) {
-								Ones = one;
-								z = 0;
-							}else {
+							if (one > 100 && one <= H[player]) {    //æ‰€ä¸‹æ³¨çš„å€¼éç™¾ä¸”åœ¨æ”¯ä»˜èƒ½åŠ›å…§
+								Ones = one;     //å°‡ä¸‹æ³¨è¨˜ä¸‹ä»¥å‚™åŠ æ³¨
+								z = 0;  //è¨ˆæ•¸ç”¨è®Šæ•¸ï¼šä¸‹æ³¨æˆåŠŸ
+							}else {     //ä¸‹æ³¨é•è¦
 								if (one < 100 && one > H[player])
-									cout << "¤Uª`Äw½X³Ì¤Ö100¡A¨Ã¥B¤Uª`Äw½XÀ³¦b¥i­t¾á½d³ò¤º¡I" << endl << "ª±®a¾Ö¦³Äw½X " << H[player] << "¡A¤Uª`Äw½X " << one << "¡A¤Uª`¤£¦¨¥ß¡I" << endl << "\t½Ğ­«·s¤Uª`¡G";
+									cout << "ä¸‹æ³¨ç±Œç¢¼æœ€å°‘100ï¼Œä¸¦ä¸”ä¸‹æ³¨ç±Œç¢¼æ‡‰åœ¨å¯è² æ“”ç¯„åœå…§ï¼" << endl << "ç©å®¶æ“æœ‰ç±Œç¢¼ " << H[player] << "ï¼Œä¸‹æ³¨ç±Œç¢¼ " << one << "ï¼Œä¸‹æ³¨ä¸æˆç«‹ï¼" << endl << "\tè«‹é‡æ–°ä¸‹æ³¨ï¼š";
 								else if (one < 100 && one <= H[player])
-									cout << "¤Uª`Äw½X³Ì¤Ö100¡I" << endl << "ª±®a¤Uª`Äw½X " << one << "¡A¤Uª`¤£¦¨¥ß¡I" << endl << "\t½Ğ­«·s¤Uª`¡G";
+									cout << "ä¸‹æ³¨ç±Œç¢¼æœ€å°‘100ï¼" << endl << "ç©å®¶ä¸‹æ³¨ç±Œç¢¼ " << one << "ï¼Œä¸‹æ³¨ä¸æˆç«‹ï¼" << endl << "\tè«‹é‡æ–°ä¸‹æ³¨ï¼š";
 								else if (one > 100 && one > H[player])
-									cout << "¤Uª`Äw½XÀ³¦b¥i­t¾á½d³ò¤º¡I" << endl << "ª±®a¾Ö¦³Äw½X " << H[player] << "¡A¤Uª`Äw½X " << one << "¡A¤Uª`¤£¦¨¥ß¡I" << endl << "\t½Ğ­«·s¤Uª`¡G";
+									cout << "ä¸‹æ³¨ç±Œç¢¼æ‡‰åœ¨å¯è² æ“”ç¯„åœå…§ï¼" << endl << "ç©å®¶æ“æœ‰ç±Œç¢¼ " << H[player] << "ï¼Œä¸‹æ³¨ç±Œç¢¼ " << one << "ï¼Œä¸‹æ³¨ä¸æˆç«‹ï¼" << endl << "\tè«‹é‡æ–°ä¸‹æ³¨ï¼š";
 
-								z = 1;
+								z = 1;      //è¨ˆæ•¸ç”¨è®Šæ•¸ï¼šä¸‹æ³¨å¤±æ•—
 							}
-						} while (z == 1);//R while Ones worn
-						H[player] -= one;
-						Allo += one;
-						cout << "ª±®a\"" << N[player] << "\"¤Uª`" << one << "¡A³Ñ¾lÄw½X" << H[player] << endl;
+						} while (z == 1);//é‡ä¾† while Ones worn
+						H[player] -= one;   //æ”¯ä»˜ç±Œç¢¼
+						Allo += one;    //ç›®å‰å‹è€…æ‰€å¾—(ç¸½ä¸‹æ³¨é‡
+						//å®£å‘Šä¸‹æ³¨å®Œæˆ
+						cout << "ç©å®¶\"" << N[player] << "\"ä¸‹æ³¨" << one << "ï¼Œå‰©é¤˜ç±Œç¢¼" << H[player] << endl;
 						break;
 
-					case 2:	//DarkCard
-						cout << "¬d¬İª±®a\"" << N[player] << "\"ªº·tµP(¿é¤J\"0\"Åã¥Ü·tµP)" << endl;
-						do {	//see DarkCard
+					case 3:	//DarkCard
+						cout << "æŸ¥çœ‹ç©å®¶\"" << N[player] << "\"çš„æš—ç‰Œ(è¼¸å…¥\"0\"é¡¯ç¤ºæš—ç‰Œï¼Œ\"-1\"å–æ¶ˆ)" << endl;
+						do {	//See DarkCard
 							cin >> seen;
-							if (seen == 0)	//¤Ş¤J·tµP¡I!!*
-								cout << "ª±®a" << N[player] << "ªº·tµP¡G" << darkCard(player) << endl;
+							if (seen == 0)	//å¼•å…¥æš—ç‰Œï¼!!*
+								cout << "ç©å®¶" << N[player] << "çš„æš—ç‰Œï¼š" << darkCard(player) << endl;
+							else if(seen == -1)
+								seen = 0;
+							else
+								cout << "è¼¸å…¥éŒ¯èª¤ï¼æŸ¥çœ‹ç©å®¶\"" << N[player] << "\"çš„æš—ç‰Œ(è¼¸å…¥\"0\"é¡¯ç¤ºæš—ç‰Œï¼Œ\"-1\"å–æ¶ˆ)" << endl;
 						} while (seen != 0);
 						break;
 
 					case 3:	//Pass
 						Out = 0;
-						cout << "ª±®a\"" << N[player] << "\"¦b¦¹§½±óÅv\n\tPass" << endl;
+						cout << "ç©å®¶\"" << N[player] << "\"åœ¨æ­¤å±€æ£„æ¬Š\n\tPass" << endl;
 						break;
 
 					default:	//Other
@@ -82,42 +87,42 @@ void act0(int player, vector<string> N, bool Pass, bool Out) {
 			}//end if pass
 		}//end if out
 	} while (x == 2);//R while darkCard
-}//End act0 ¤Uª`
+}//End act0 ä¸‹æ³¨
 
 
-//¸òª` & ¥[ª`
+//è·Ÿæ³¨ & åŠ æ³¨
 void act(int player, vector<string> N, bool Pass, bool Out) {
 	int x = 0;
 	int seen, one, z, oth = 0;
 
 	do {	//R while darkCard
 		if (Out == true) {	//Pass or Out
-			cout << "ª±®a\"" << N[player] << "\"¤w¯}²£¥X§½\n\tPass" << endl;
+			cout << "ç©å®¶\"" << N[player] << "\"å·²ç ´ç”¢å‡ºå±€\n\tPass" << endl;
 		}else {
 			if (Pass == true) {
-				cout << "ª±®a\"" << N[player] << "\"¤w¦b¦¹§½±óÅv\n\tPass" << endl;
+				cout << "ç©å®¶\"" << N[player] << "\"å·²åœ¨æ­¤å±€æ£„æ¬Š\n\tPass" << endl;
 			}else {
-				cout << "It's" << "'s turn!" << endl << endl << "¬O§_¸òª`¡H\n1.¸òª`\n2.¥[ª`\n3.¬d¬İ·tµP\n4.±óÅv" << endl;
+				cout << "It's" << "'s turn!" << endl << endl << "æ˜¯å¦è·Ÿæ³¨ï¼Ÿ\n1.è·Ÿæ³¨\n2.åŠ æ³¨\n3.æŸ¥çœ‹æš—ç‰Œ\n4.æ£„æ¬Š" << endl;
 				do{//R while chose(x) worn / Ones worn
 					cin >> x;
 					cout << endl;
 
 					switch (x){
-					case 1:	//¸òª`
+					case 1:	//è·Ÿæ³¨
 						if (H[player] > Ones) {
 							H[player] -= Ones;
 							Allo += Ones;
-							cout << "ª±®a\"" << N[player] << "\"¤Uª`" << one << "¡A³Ñ¾lÄw½X" << H[player] << endl;
+							cout << "ç©å®¶\"" << N[player] << "\"ä¸‹æ³¨" << one << "ï¼Œå‰©é¤˜ç±Œç¢¼" << H[player] << endl;
 							z = 0;
 						}else {
 							if (one > 100 && one > H[player])
-								cout << "¤Uª`Äw½XÀ³¦b¥i­t¾á½d³ò¤º¡I" << endl << "ª±®a¾Ö¦³Äw½X " << H[player] << "¡A¤Uª`Äw½X " << one << "¡A¤Uª`¤£¦¨¥ß¡I" << endl;
+								cout << "ä¸‹æ³¨ç±Œç¢¼æ‡‰åœ¨å¯è² æ“”ç¯„åœå…§ï¼" << endl << "ç©å®¶æ“æœ‰ç±Œç¢¼ " << H[player] << "ï¼Œä¸‹æ³¨ç±Œç¢¼ " << one << "ï¼Œä¸‹æ³¨ä¸æˆç«‹ï¼" << endl;
 							z = 1;
 						}
 						break;
 
-					case 2:	//¥[ª`
-						cout << "ª±®a\"" << N[player] << "\"­n¨D¥[ª`" << endl << "½Ğ¿é¤J¤Uª`Äw½X(¿é¤J-1¨ú®ø¥[ª`)¡G";
+					case 2:	//åŠ æ³¨
+						cout << "ç©å®¶\"" << N[player] << "\"è¦æ±‚åŠ æ³¨" << endl << "è«‹è¼¸å…¥ä¸‹æ³¨ç±Œç¢¼(è¼¸å…¥-1å–æ¶ˆåŠ æ³¨)ï¼š";
 						z = 1;
 						do {	//R while Ones wone
 							cin >> one;
@@ -127,13 +132,13 @@ void act(int player, vector<string> N, bool Pass, bool Out) {
 									z = 0;
 								}else {
 									if (one < Ones && one > H[player]) {
-										cout << "¤Uª`Äw½XÀ³¤j©ó­ì¥»¤Uª`(" << Ones << ")¡A¨Ã¥B¤Uª`Äw½XÀ³¦b¥i­t¾á½d³ò¤º¡I" << endl << "ª±®a¾Ö¦³Äw½X " << H[player] << "¡A¤Uª`Äw½X " << one << "¡A¤Uª`¤£¦¨¥ß¡I" << endl << "\t½Ğ­«·s¤Uª`¡G" << endl;
+										cout << "ä¸‹æ³¨ç±Œç¢¼æ‡‰å¤§æ–¼åŸæœ¬ä¸‹æ³¨(" << Ones << ")ï¼Œä¸¦ä¸”ä¸‹æ³¨ç±Œç¢¼æ‡‰åœ¨å¯è² æ“”ç¯„åœå…§ï¼" << endl << "ç©å®¶æ“æœ‰ç±Œç¢¼ " << H[player] << "ï¼Œä¸‹æ³¨ç±Œç¢¼ " << one << "ï¼Œä¸‹æ³¨ä¸æˆç«‹ï¼" << endl << "\tè«‹é‡æ–°ä¸‹æ³¨ï¼š" << endl;
 									}
 									else if (one < Ones && one <= H[player]) {
-										cout << "¤Uª`Äw½XÀ³¤j©ó­ì¥»¤Uª`(" << Ones << ")¡I" << endl << "ª±®a¤Uª`Äw½X " << one << "¡A¤Uª`¤£¦¨¥ß¡I" << endl << "\t½Ğ­«·s¤Uª`¡G" << endl;
+										cout << "ä¸‹æ³¨ç±Œç¢¼æ‡‰å¤§æ–¼åŸæœ¬ä¸‹æ³¨(" << Ones << ")ï¼" << endl << "ç©å®¶ä¸‹æ³¨ç±Œç¢¼ " << one << "ï¼Œä¸‹æ³¨ä¸æˆç«‹ï¼" << endl << "\tè«‹é‡æ–°ä¸‹æ³¨ï¼š" << endl;
 									}
 									else if (one > Ones && one > H[player]) {
-										cout << "¤Uª`Äw½XÀ³¦b¥i­t¾á½d³ò¤º¡I" << endl << "ª±®a¾Ö¦³Äw½X " << H[player] << "¡A¤Uª`Äw½X " << one << "¡A¤Uª`¤£¦¨¥ß¡I" << endl << "\t½Ğ­«·s¤Uª`¡G" << endl;
+										cout << "ä¸‹æ³¨ç±Œç¢¼æ‡‰åœ¨å¯è² æ“”ç¯„åœå…§ï¼" << endl << "ç©å®¶æ“æœ‰ç±Œç¢¼ " << H[player] << "ï¼Œä¸‹æ³¨ç±Œç¢¼ " << one << "ï¼Œä¸‹æ³¨ä¸æˆç«‹ï¼" << endl << "\tè«‹é‡æ–°ä¸‹æ³¨ï¼š" << endl;
 									}
 									z = 1;
 								}
@@ -143,23 +148,27 @@ void act(int player, vector<string> N, bool Pass, bool Out) {
 						if (z == 0) {
 							H[player] -= one;
 							Allo += one;
-							cout << "ª±®a\"" << N[player] << "\"¤Uª`" << one << "¡A³Ñ¾lÄw½X" << H[player] << endl;
+							cout << "ç©å®¶\"" << N[player] << "\"ä¸‹æ³¨" << one << "ï¼Œå‰©é¤˜ç±Œç¢¼" << H[player] << endl;
 							break;
 						}else if(one == -1)
 							break;
 
 					case 3:	//DarkCard
-						cout << "¬d¬İª±®a\"" << N[player] << "\"ªº·tµP(¿é¤J\"0\"Åã¥Ü·tµP)" << endl;
+						cout << "æŸ¥çœ‹ç©å®¶\"" << N[player] << "\"çš„æš—ç‰Œ(è¼¸å…¥\"0\"é¡¯ç¤ºæš—ç‰Œï¼Œ\"-1\"å–æ¶ˆ)" << endl;
 						do {	//See DarkCard
 							cin >> seen;
-							if (seen == 0)	//¤Ş¤J·tµP¡I!!*
-								cout << "ª±®a" << N[player] << "ªº·tµP¡G" << darkCard(player) << endl;
+							if (seen == 0)	//å¼•å…¥æš—ç‰Œï¼!!*
+								cout << "ç©å®¶" << N[player] << "çš„æš—ç‰Œï¼š" << darkCard(player) << endl;
+							else if(seen == -1)
+								seen = 0;
+							else
+								cout << "è¼¸å…¥éŒ¯èª¤ï¼æŸ¥çœ‹ç©å®¶\"" << N[player] << "\"çš„æš—ç‰Œ(è¼¸å…¥\"0\"é¡¯ç¤ºæš—ç‰Œï¼Œ\"-1\"å–æ¶ˆ)" << endl;
 						} while (seen != 0);
 						break;
 
 					case 4:	//Pass
 						Out = 0;
-						cout << "ª±®a\"" << N[player] << "\"¦b¦¹§½±óÅv\n\tPass" << endl;
+						cout << "ç©å®¶\"" << N[player] << "\"åœ¨æ­¤å±€æ£„æ¬Š\n\tPass" << endl;
 						break;
 
 					default:	//other
@@ -171,7 +180,7 @@ void act(int player, vector<string> N, bool Pass, bool Out) {
 			}//end Pass
 		}//End Out
 	} while (x == 3);//R while darkCard
-}//End act ¸òª`&¥[ª`
+}//End act è·Ÿæ³¨&åŠ æ³¨
 
 
 
@@ -198,5 +207,5 @@ int main() {
 		cout << "Player " << i << " :" << N[i];
 
 
-	H.assign(Size, 3000);	/*¡I¡I¡I 0w0 0w0 0w0 0w0 ¡I¡I¡I*/
+	H.assign(Size, 3000);	/*ï¼ï¼ï¼ 0w0 0w0 0w0 0w0 ï¼ï¼ï¼*/
 }
